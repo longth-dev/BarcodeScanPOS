@@ -1,0 +1,42 @@
+﻿<Window x:Class="ScannerQRCode.CheckoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScannerQRCode"
+        mc:Ignorable="d"
+        Title="CheckoutWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Dòng cho tiêu đề -->
+            <RowDefinition Height="*"/>
+            <!-- Dòng cho nội dung chính -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <!-- Cột cho hình ảnh -->
+            <ColumnDefinition Width="3*"/>
+            <!-- Cột cho bảng DataGrid -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Tiêu đề TextBlock -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Checkout" 
+                   FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" 
+                   Margin="10"/>
+
+        <!-- Hình ảnh bên trái -->
+      
+        <Image x:Name="CheckOutCam" Width="200" Height="200" Stretch="UniformToFill" Grid.Row="1" Grid.Column="0"/>
+
+            <!-- DataGrid bên phải -->
+        <DataGrid x:Name="CheckoutData" Grid.Row="1" Grid.Column="1" Margin="10" AutoGenerateColumns="False" CellEditEnding="CheckoutData_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Product.ProductName }" Width="250"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Product.Price , StringFormat=C }" Width="80"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity }" Width="80"/>
+                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice, Mode=OneWay}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
